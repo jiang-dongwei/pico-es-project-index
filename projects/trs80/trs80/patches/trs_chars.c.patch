@@ -1,0 +1,15 @@
+--- a/trs_chars.c
++++ b/trs_chars.c
+@@ -8,9 +8,10 @@
+  * Model III character generator ROMs.
+  */
+ 
+-#include "trs_iodefs.h"
++#define MAXCHARS 256
++#define TRS_CHAR_HEIGHT 12
+ 
+-char trs_char_data[][MAXCHARS][TRS_CHAR_HEIGHT] = {
++const unsigned char trs_char_data[][MAXCHARS][TRS_CHAR_HEIGHT] = {
+ 
+ {
+   /* CG 0 - for Model I */

@@ -1,0 +1,54 @@
+diff --git a/src/noiz2sa.c b/src/noiz2sa.c
+index 451a5ec..4ecd899 100644
+--- a/src/noiz2sa.c
++++ b/src/noiz2sa.c
+@@ -259,7 +259,7 @@ int interval = INTERVAL_BASE;
+ int tick = 0;
+ static int pPrsd = 1;
+ 
+-int main(int argc, char *argv[]) {
++int noiz2sa_main(int argc, char *argv[]) {
+   int done = 0;
+   long prvTickCount = 0;
+   int i;
+diff --git a/src/barragemanager.cc b/src/barragemanager.cc
+--- a/src/barragemanager.cc
++++ b/src/barragemanager.cc
+@@ -11,7 +11,6 @@
+ extern "C" {
+ #include "SDL.h"
+-#include <sys/types.h>
+-#include <dirent.h>
++#include "compat.h"
+ #include "noiz2sa.h"
+ #include "degutil.h"
+ #include "vector.h"
+@@ -42,20 +41,21 @@ static int readBulletMLFiles(const char *dirPath, Barrage brg[]) {
+-  DIR *dp;
+-  struct dirent *dir;
++  compat_dir_t *dp;
++  const char *entry;
+   int i = 0;
+   char fileName[256];
+-  if ( (dp = opendir(dirPath)) == NULL ) {
++  if ( (dp = compat_dir_open(dirPath)) == NULL ) {
+     fprintf(stderr, "Can't open directory: %s\n", dirPath);
+     exit(1);
+   }
+-  while ((dir = readdir(dp)) != NULL) {
+-    if ( strcmp(strrchr(dir->d_name, '.'), ".xml") != 0 ) continue; // Read .xml files.
++  while ((entry = compat_dir_read(dp)) != NULL) {
++    const char *extension = strrchr(entry, '.');
++    if ( extension == NULL || strcmp(extension, ".xml") != 0 ) continue; // Read .xml files.
+     strcpy(fileName, dirPath);
+     strcat(fileName, "/");
+-    strcat(fileName, dir->d_name);
++    strcat(fileName, entry);
+     brg[i].bulletml = new BulletMLParserTinyXML(fileName);
+     brg[i].bulletml->build(); i++;
+     printf("%s\n", fileName);
+   }
+-  closedir(dp);
++  compat_dir_close(dp);
+   return i;
+ }

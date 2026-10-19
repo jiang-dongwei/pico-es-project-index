@@ -1,0 +1,10 @@
+{
+  "deployed_at": "2026-10-06T17:41:26.8110382+08:00",
+  "volume_id": "\\\\?\\Volume{b7c2e142-bc25-11f1-9852-50c2e8f4a156}\\",
+  "firmware": "H:\\emu\\16\\studio2.uf2",
+  "sha256": "B28297EC0B32496122F3CB68F2301C9E85D7FB43B249013074E9A082B599B411",
+  "backup": "E:\\ComporyProject\\pico_ES_Public_Projects\\Pico_ES_RCAStudioII\\studio2\\build-deploy-backup-input-v2-20261006-174126",
+  "preserved_files": 13,
+  "readback": "PASS",
+  "hardware_acceptance": "PENDING INPUT STUDIO2 v=2 logs"
+}

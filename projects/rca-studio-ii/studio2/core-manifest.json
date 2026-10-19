@@ -1,0 +1,12 @@
+{
+  "name": "studio2",
+  "displayName": "RCA Studio II",
+  "system": "STUDIO2",
+  "frontendContractVersion": 2,
+  "core": "original CDP1802 + CDP1861",
+  "license": "GPL-3.0-or-later",
+  "romPath": "/roms/STUDIO2",
+  "biosPath": "/bios/studio2.rom",
+  "settingsPath": "/settings_STUDIO2.dat",
+  "hardware": "RP2350B HW_CONFIG=16"
+}

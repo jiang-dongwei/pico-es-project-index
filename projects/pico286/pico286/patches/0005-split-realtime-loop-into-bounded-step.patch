@@ -1,0 +1,278 @@
+warning: in the working copy of 'src/pico-main.c', LF will be replaced by CRLF the next time Git touches it
+diff --git a/src/pico-main.c b/src/pico-main.c
+index ebd4fb5..13df23a 100644
+--- a/src/pico-main.c
++++ b/src/pico-main.c
+@@ -221,8 +221,21 @@ INLINE void _putchar(char character) {
+ volatile int16_t last_sb_sample = 0;
+ volatile bool ask_to_blast = false;
+ 
+-/* Renderer loop on Pico's second core */
+-void __time_critical_func() second_core(void) {
++typedef struct pico286_realtime_state {
++    uint64_t tick;
++    uint64_t last_timer_tick;
++    uint64_t last_cursor_blink;
++    uint64_t last_sound_tick;
++    uint64_t last_frame_tick;
++    uint64_t last_dss_tick;
++    uint64_t last_sb_tick;
++    int16_t last_dss_sample;
++    uint8_t old_video_mode;
++} pico286_realtime_state_t;
++
++static pico286_realtime_state_t realtime_state;
++
++static void pico286_realtime_init(void) {
+     // Initialize graphics subsystem
+     graphics_init();
+     graphics_set_buffer((uint8_t *)VIDEORAM, 320, 200);
+@@ -274,136 +287,146 @@ void __time_critical_func() second_core(void) {
+     pwm_init(pwm_gpio_to_slice_num(PCM_PIN), &pwm, true);
+ #endif
+ 
+-    // Timing variables
+-    uint64_t tick = time_us_64();
+-    uint64_t last_timer_tick = tick;
+-    uint64_t last_cursor_blink = tick;
+-    uint64_t last_sound_tick = tick;
+-    uint64_t last_frame_tick = tick;
+-    uint64_t last_dss_tick = 0;
+-    uint64_t last_sb_tick = 0;
+-
+-    int16_t last_dss_sample = 0;
++    const uint64_t tick = time_us_64();
++    realtime_state = (pico286_realtime_state_t) {
++        .tick = tick,
++        .last_timer_tick = tick,
++        .last_cursor_blink = tick,
++        .last_sound_tick = tick,
++        .last_frame_tick = tick,
++    };
++}
+ 
+-    // Main render loop
+-    while (true) {
+-        // Timer interrupt handling
+-        if (tick >= last_timer_tick + timer_period) {
++static inline void pico286_realtime_step(void) {
++    // Timer interrupt handling
++    if (realtime_state.tick >=
++        realtime_state.last_timer_tick + timer_period) {
+ #if RETROPICOES_HW16
+-            pico286_core_events_publish_pit(&core_events, 1u);
++        pico286_core_events_publish_pit(&core_events, 1u);
+ #else
+-            doirq(0);
++        doirq(0);
+ #endif
+-            last_timer_tick = tick;
+-        }
++        realtime_state.last_timer_tick = realtime_state.tick;
++    }
+ 
+-        // Cursor blink handling (333ms intervals)
+-        if (tick >= last_cursor_blink + 333333) {
+-            cursor_blink_state ^= 1;
+-            last_cursor_blink = tick;
+-        }
++    // Cursor blink handling (333ms intervals)
++    if (realtime_state.tick >=
++        realtime_state.last_cursor_blink + 333333) {
++        cursor_blink_state ^= 1;
++        realtime_state.last_cursor_blink = realtime_state.tick;
++    }
+ 
+-        // Dinse Sound Source frequency ~7kHz
+-        if (tick > last_dss_tick + (1000000 / 7000)) {
+-            last_dss_sample = dss_sample();
+-            last_dss_tick = tick;
+-        }
++    // Dinse Sound Source frequency ~7kHz
++    if (realtime_state.tick >
++        realtime_state.last_dss_tick + (1000000 / 7000)) {
++        realtime_state.last_dss_sample = dss_sample();
++        realtime_state.last_dss_tick = realtime_state.tick;
++    }
+ 
+ #if !PICO_RP2040
+-        // Sound Blaster sampling
+-        if (tick > last_sb_tick + timeconst) {
+-            if (butter_psram_size || PSRAM_AVAILABLE)
+-                last_sb_sample = blaster_sample();
+-            else
+-                ask_to_blast = true; // protect swap from using from seconf core
+-            last_sb_tick = tick;
+-        }
++    // Sound Blaster sampling
++    if (realtime_state.tick >
++        realtime_state.last_sb_tick + timeconst) {
++        if (butter_psram_size || PSRAM_AVAILABLE)
++            last_sb_sample = blaster_sample();
++        else
++            ask_to_blast = true; // protect swap from using from seconf core
++        realtime_state.last_sb_tick = realtime_state.tick;
++    }
+ #endif
+ 
+-        // Audio output at configured sample rate
+-        if (tick > last_sound_tick + (1000000 / SOUND_FREQUENCY)) {
+-            int16_t samples[2];
+-            get_sound_sample(last_dss_sample + last_sb_sample, samples);
++    // Audio output at configured sample rate
++    if (realtime_state.tick >
++        realtime_state.last_sound_tick + (1000000 / SOUND_FREQUENCY)) {
++        int16_t samples[2];
++        get_sound_sample(realtime_state.last_dss_sample + last_sb_sample,
++                         samples);
+ 
+ #if I2S_SOUND
+-            i2s_dma_write(&i2s_config, samples);
++        i2s_dma_write(&i2s_config, samples);
+ #elif PWM_SOUND
+-            pwm_set_gpio_level(PWM_LEFT_CHANNEL, (uint16_t)((int32_t)samples[0] + 0x8000L) >> 4);
+-            pwm_set_gpio_level(PWM_RIGHT_CHANNEL, (uint16_t)((int32_t)samples[1] + 0x8000L) >> 4);
++        pwm_set_gpio_level(PWM_LEFT_CHANNEL, (uint16_t)((int32_t)samples[0] + 0x8000L) >> 4);
++        pwm_set_gpio_level(PWM_RIGHT_CHANNEL, (uint16_t)((int32_t)samples[1] + 0x8000L) >> 4);
+ #endif
+-            last_sound_tick = tick;
+-        }
++        realtime_state.last_sound_tick = realtime_state.tick;
++    }
+ 
+-        // Video frame rendering (~60Hz)
+-        if (tick >= last_frame_tick + 16667) {
+-            static uint8_t old_video_mode;
+-
+-            // Handle video mode changes
+-            if (old_video_mode != videomode) {
+-                switch (videomode) {
+-                    case TEXTMODE_80x25_BW:
+-                    case TEXTMODE_40x25_BW:
+-                        case TEXTMODE_80x25_COLOR:
+-                        case TEXTMODE_40x25_COLOR: {
+-                        for (uint8_t i = 0; i < 16; i++) {
+-                            graphics_set_palette(i, cga_palette[i]);
+-                        }
++    // Video frame rendering (~60Hz)
++    if (realtime_state.tick >=
++        realtime_state.last_frame_tick + 16667) {
++        // Handle video mode changes
++        if (realtime_state.old_video_mode != videomode) {
++            switch (videomode) {
++                case TEXTMODE_80x25_BW:
++                case TEXTMODE_40x25_BW:
++                    case TEXTMODE_80x25_COLOR:
++                    case TEXTMODE_40x25_COLOR: {
++                    for (uint8_t i = 0; i < 16; i++) {
++                        graphics_set_palette(i, cga_palette[i]);
+                     }
+-                        break;
++                }
++                    break;
+ 
+-                    case TGA_160x200x16:
+-                    case TGA_320x200x16:
+-                    case TGA_640x200x16:
+-                        for (uint8_t i = 0; i < 15; i++) {
+-                            graphics_set_palette(i, tga_palette[i]);
+-                        }
+-                        break;
++                case TGA_160x200x16:
++                case TGA_320x200x16:
++                case TGA_640x200x16:
++                    for (uint8_t i = 0; i < 15; i++) {
++                        graphics_set_palette(i, tga_palette[i]);
++                    }
++                    break;
+ 
+-                    case COMPOSITE_160x200x16:
++                case COMPOSITE_160x200x16:
+ #ifndef NTSC
+-                        for (uint8_t i = 0; i < 15; i++) {
+-                            graphics_set_palette(i, cga_composite_palette[0][i]);
+-                        }
+-                        break;
++                    for (uint8_t i = 0; i < 15; i++) {
++                        graphics_set_palette(i, cga_composite_palette[0][i]);
++                    }
++                    break;
+ #endif
+ 
+-                    case COMPOSITE_160x200x16_force:
++                case COMPOSITE_160x200x16_force:
+ #ifndef NTSC
+-                        for (uint8_t i = 0; i < 15; i++) {
+-                            graphics_set_palette(i, cga_composite_palette[cga_intensity << 1][i]);
+-                        }
+-                        break;
++                    for (uint8_t i = 0; i < 15; i++) {
++                        graphics_set_palette(i, cga_composite_palette[cga_intensity << 1][i]);
++                    }
++                    break;
+ #endif
+-                    case CGA_320x200x4_BW:
+-                    case CGA_320x200x4:
+-                        for (uint8_t i = 0; i < 4; i++) {
+-                            graphics_set_palette(i, cga_palette[cga_gfxpal[cga_colorset][cga_intensity][i]]);
+-                        }
+-                        break;
++                case CGA_320x200x4_BW:
++                case CGA_320x200x4:
++                    for (uint8_t i = 0; i < 4; i++) {
++                        graphics_set_palette(i, cga_palette[cga_gfxpal[cga_colorset][cga_intensity][i]]);
++                    }
++                    break;
+ 
+ 
+-                    case VGA_320x200x256:
+-                        if (vga_planar_mode) {
+-                            videomode = VGA_320x200x256x4;
+-                        }
+-                    case VGA_320x200x256x4:
+-                    default:
+-                        for (uint8_t i = 0; i < 255; i++) {
+-                            graphics_set_palette(i, vga_palette[i]);
+-                        }
+-                        break;
+-                }
+-                graphics_set_mode(videomode);
+-                old_video_mode = videomode;
++                case VGA_320x200x256:
++                    if (vga_planar_mode) {
++                        videomode = VGA_320x200x256x4;
++                    }
++                case VGA_320x200x256x4:
++                default:
++                    for (uint8_t i = 0; i < 255; i++) {
++                        graphics_set_palette(i, vga_palette[i]);
++                    }
++                    break;
+             }
++            graphics_set_mode(videomode);
++            realtime_state.old_video_mode = videomode;
++        }
+ #if defined(TFT)
+-            refresh_lcd();
+-            port3DA = 8;
+-            port3DA |= 1;
++        refresh_lcd();
++        port3DA = 8;
++        port3DA |= 1;
+ #endif
+-            last_frame_tick = tick;
+-        }
+-        tick = time_us_64();
++        realtime_state.last_frame_tick = realtime_state.tick;
++    }
++    realtime_state.tick = time_us_64();
++}
++
++/* Renderer loop on Pico's second core */
++void __time_critical_func() second_core(void) {
++    pico286_realtime_init();
++    while (true) {
++        pico286_realtime_step();
+         tight_loop_contents();
+     }
+     __unreachable();

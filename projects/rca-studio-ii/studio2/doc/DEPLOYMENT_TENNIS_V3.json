@@ -1,0 +1,10 @@
+{
+  "deployed_at": "2026-10-06T17:52:37.1598104+08:00",
+  "volume_id": "\\\\?\\Volume{b7c2e142-bc25-11f1-9852-50c2e8f4a156}\\",
+  "firmware": "H:\\emu\\16\\studio2.uf2",
+  "sha256": "9381FF1706163414E2B48B46620B85A927354DC187728461F34A7BD6CC146A96",
+  "backup": "E:\\ComporyProject\\pico_ES_Public_Projects\\Pico_ES_RCAStudioII\\studio2\\build-deploy-backup-tennis-v3-20261006-175236",
+  "preserved_files": 13,
+  "readback": "PASS",
+  "hardware_acceptance": "PENDING Start Tennis and INPUT v=3 verification"
+}

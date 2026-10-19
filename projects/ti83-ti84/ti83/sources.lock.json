@@ -1,0 +1,333 @@
+{
+  "files": [
+    {
+      "sha256": "eeac522a6fdac373436251d01508131fa71180a01175432b693ba2c4cc6955f1",
+      "path": "upstream/emu/calcs.c"
+    },
+    {
+      "sha256": "04d9181358422018110755f35c7158967374fea0654a48852ed45a8a60a93654",
+      "path": "upstream/emu/cert.c"
+    },
+    {
+      "sha256": "4a52df55e298cacc1c6d608df5408954c7f8cecedce8d6a49a931e08d4d53b69",
+      "path": "upstream/emu/flash.c"
+    },
+    {
+      "sha256": "295cdfbf1119b0bbfda62de3eb3a84f22376e85907c2cfaca50fc597eb2e0926",
+      "path": "upstream/emu/graycolor.c"
+    },
+    {
+      "sha256": "343bb2ea08ba9ec45f159a7e271e866578f7a727ff4519e9335bbb1642f2240c",
+      "path": "upstream/emu/grayimage.c"
+    },
+    {
+      "sha256": "6093eaa0231f7d1f81cde39b91fde0268529c99eaea954a4f30c8d3a1d8efe8c",
+      "path": "upstream/emu/graylcd.c"
+    },
+    {
+      "sha256": "8f5f930d5ea0c5489586fda90fda374f5c5b431b3c7ab0c3ba0274a770ef89fc",
+      "path": "upstream/emu/graylcd.h"
+    },
+    {
+      "sha256": "f56289c7e73bcaf9a9b2fc66595ac9491039ab1ca590e400b55d27c7c0f50ad8",
+      "path": "upstream/emu/keypad.c"
+    },
+    {
+      "sha256": "20ac06d543bb1d72249b4c37b656e84e97c6aa8ba814a22e1fc32c8d72f54bbe",
+      "path": "upstream/emu/lcd.c"
+    },
+    {
+      "sha256": "5d9f3ab73df2e68268fd605e627f2dd6bcae2a6dbade50bb2455d0a79aaa189f",
+      "path": "upstream/emu/link.c"
+    },
+    {
+      "sha256": "0db60685879deef115121f1b19b8a6d1a9b40021299c73d5c81431a157ec754d",
+      "path": "upstream/emu/Makefile.in"
+    },
+    {
+      "sha256": "83d5857abd378c53257189725be3cfdd35053d447313ba26d881914d4c3eae01",
+      "path": "upstream/emu/md5.c"
+    },
+    {
+      "sha256": "8685993594b81f72ede9a44e8a4bca90e844cbc1557e9ee25e33e9855cf7806a",
+      "path": "upstream/emu/monolcd.c"
+    },
+    {
+      "sha256": "714b6a1605572c7fb8e5a1dd0239916159310e6f3eae49561e1c4af450263289",
+      "path": "upstream/emu/rom.c"
+    },
+    {
+      "sha256": "b3b450061ec5398f747acf8de07d520802fc010e38b1faaee14e130c54653a8f",
+      "path": "upstream/emu/scancodes.h"
+    },
+    {
+      "sha256": "b0ea80635400f683aabf29a1dd2ba1704e816ae3e83525278e741d3eb02fa94b",
+      "path": "upstream/emu/state.c"
+    },
+    {
+      "sha256": "0799dfb9b572cfd0faed7dbbb3e21065f529fdd343bef99f13bcc4a9781a2a2c",
+      "path": "upstream/emu/tilem.h"
+    },
+    {
+      "sha256": "02709c7927bfb29233e7106b6553375b6a36d90fe4a5e369a737b659f8dddaa1",
+      "path": "upstream/emu/tilemint.h"
+    },
+    {
+      "sha256": "585aff0608b67c401d550130a355c794b27675356e00c76ee537120a51ad9455",
+      "path": "upstream/emu/timers.c"
+    },
+    {
+      "sha256": "60a36d521f2d28519995fecb87eb9ee2be00a36b44424a64c4267500a0dee0b8",
+      "path": "upstream/emu/x1/x1_init.c"
+    },
+    {
+      "sha256": "df4e2a680757159aed77c4c36106523e36d4f210870cd859dd71cdaaaaf8868d",
+      "path": "upstream/emu/x1/x1_io.c"
+    },
+    {
+      "sha256": "e0a63c81e4ad0e92c7284fbf59bb95e82fa1b96a8f52c87cd2ed6505b3808bd0",
+      "path": "upstream/emu/x1/x1_memory.c"
+    },
+    {
+      "sha256": "29c810e4ac7fbf22cfb620487f926cb3caaf5c0eb95ce4959d429fb94807d75f",
+      "path": "upstream/emu/x1/x1_subcore.c"
+    },
+    {
+      "sha256": "03942d5d7f978d405414fdbd24c9983572730340302e2013ce29abb0cb34f8b1",
+      "path": "upstream/emu/x1/x1.h"
+    },
+    {
+      "sha256": "16aea363bc9a3b29e650fe20b80ebec49bf7ff64ebaf41ed28eabc9989990220",
+      "path": "upstream/emu/x2/x2_init.c"
+    },
+    {
+      "sha256": "a60acd45b486435e7e7f298d0903bb30f71b0d0f6fa76a626d0d00f85d8e1bdb",
+      "path": "upstream/emu/x2/x2_io.c"
+    },
+    {
+      "sha256": "b4a6d915d75641f9686d84f0365398d07afdddf0be799acc04c3e9591db1421d",
+      "path": "upstream/emu/x2/x2_memory.c"
+    },
+    {
+      "sha256": "edb0daa33e89c9b8e65ad011ce5ee202e76f9a6e257fcf6adbc3cd6b0e6ac32b",
+      "path": "upstream/emu/x2/x2_subcore.c"
+    },
+    {
+      "sha256": "02db5ad1aae281681943dd34b0ac9ce4f6e32ed1fa6bf249e4eaa6d3d926f997",
+      "path": "upstream/emu/x2/x2.h"
+    },
+    {
+      "sha256": "d8c7c71d9b27fb648fcbdd99d3b83b14dcfafec0486bdb85a50d6ca14169d142",
+      "path": "upstream/emu/x3/x3_init.c"
+    },
+    {
+      "sha256": "98c8d37fa8fb029169b86a446d88015454bb453aebc08c92d1fdd3353fdc980c",
+      "path": "upstream/emu/x3/x3_io.c"
+    },
+    {
+      "sha256": "85e9ead9b1cdfab9b7da81995f027c21ef252ff7df54f79a3bed844776dd910d",
+      "path": "upstream/emu/x3/x3_memory.c"
+    },
+    {
+      "sha256": "a3a43cb2df5966e412d50ed1292261426724589daf899330407808c4988f0fff",
+      "path": "upstream/emu/x3/x3_subcore.c"
+    },
+    {
+      "sha256": "e868c20eaae0cca151aaf8a15dc37db858de60d77a8e273a0611f5783b8c203d",
+      "path": "upstream/emu/x3/x3.h"
+    },
+    {
+      "sha256": "da9f7c9af92cf97785a472f716915bbbf531aea986b09563da6b834442274c71",
+      "path": "upstream/emu/x4/x4_init.c"
+    },
+    {
+      "sha256": "1a71fdbb7ff622bca8cf4d7064f88bb6026a5af3cba54f238a9d9ef98242998f",
+      "path": "upstream/emu/x4/x4_io.c"
+    },
+    {
+      "sha256": "ddaa1e45330e3e4ad49486bd5c3675a0a0dff01bfda4d01817ba3387e309ac89",
+      "path": "upstream/emu/x4/x4_memory.c"
+    },
+    {
+      "sha256": "ade3d75a885d74c165ec2115b7568f0722ac1e0c00687960d31d5dcad59cf52d",
+      "path": "upstream/emu/x4/x4_subcore.c"
+    },
+    {
+      "sha256": "d2c12f03f8e9a7944948ffedd1e6417ab6c5dc8260f5a258773aa8a18bdd98da",
+      "path": "upstream/emu/x4/x4.h"
+    },
+    {
+      "sha256": "c184212f271dd6cadbd93ac45ee846852d8e5570ae0334b276efd2ca84445bcd",
+      "path": "upstream/emu/x5/x5_init.c"
+    },
+    {
+      "sha256": "70cfbaa8032cc1b819d9d043c4528a6cc46b7ef987a42ef172cc06dbfe3b2551",
+      "path": "upstream/emu/x5/x5_io.c"
+    },
+    {
+      "sha256": "10bfdd8ba7bfc52961ba70441560935bd29d6a6409424ed2c48cf52a333e945b",
+      "path": "upstream/emu/x5/x5_memory.c"
+    },
+    {
+      "sha256": "d043e98f5d15c4afad4919be961be829bb25844f9b6643f4ded0eca8b2d2fa74",
+      "path": "upstream/emu/x5/x5_subcore.c"
+    },
+    {
+      "sha256": "1e5d5b6a3321669d8b63beb699a350fe7735f8f557a55e12adf82ee1c3fa25d5",
+      "path": "upstream/emu/x5/x5.h"
+    },
+    {
+      "sha256": "30729b2bac631668f5078dd2ff856eb87945acde225c0f8764947d31c10f1e42",
+      "path": "upstream/emu/x6/x6_init.c"
+    },
+    {
+      "sha256": "7c811eaf32263b1e0db3902f82e9f11d4ca83019fd690472e550167ab6e21d70",
+      "path": "upstream/emu/x6/x6_io.c"
+    },
+    {
+      "sha256": "5377bb1cb5153ec03e56113270f7243410009272b9d9c54b4631765ad9522f85",
+      "path": "upstream/emu/x6/x6_memory.c"
+    },
+    {
+      "sha256": "9dbea5977c2bc4af8ee57af0ebfda8196fbf3c71c2e14d05f665fa9592e1de51",
+      "path": "upstream/emu/x6/x6_subcore.c"
+    },
+    {
+      "sha256": "8d900e30daaa94e086ce1eb0d406896d14a72e1db358fd4d100d48e132e3f2f8",
+      "path": "upstream/emu/x6/x6.h"
+    },
+    {
+      "sha256": "65df9086b02d15d7a30bae6e4ed675b460c7d546c12383973dab1265abf6981c",
+      "path": "upstream/emu/x7/x7_init.c"
+    },
+    {
+      "sha256": "4aa84bdc1fb470f0ecf86784339c4883ded2fe4a910192acdc47bb08d9c1f400",
+      "path": "upstream/emu/x7/x7_io.c"
+    },
+    {
+      "sha256": "7045d25175877bd93224556054a5d692eae10fc7138cb712925a5aed2f62b6b7",
+      "path": "upstream/emu/x7/x7_memory.c"
+    },
+    {
+      "sha256": "7e3bcdc0c7681ee3f06600b77b19c9e916fad35e9d9f0c418a7d028d6953a170",
+      "path": "upstream/emu/x7/x7_subcore.c"
+    },
+    {
+      "sha256": "188f584705efdc6583ebe362d78b8d24e2c9c7550e0d8de17f757e67d975bee4",
+      "path": "upstream/emu/x7/x7.h"
+    },
+    {
+      "sha256": "f4497e59502bb06ff9ffc10d7a2b7fd4b0196ac4d69c449b5a2d4a31bfd3939b",
+      "path": "upstream/emu/xn/xn_init.c"
+    },
+    {
+      "sha256": "9a32fc6a768127dab945dc2697d42e11c24781a0b031d1f0154d5db6b4ceb824",
+      "path": "upstream/emu/xn/xn_io.c"
+    },
+    {
+      "sha256": "8cea81d39f00a6e97bc9d5021b1a1e2ec0c3938f34be57e5d37fc66f449b9fc9",
+      "path": "upstream/emu/xn/xn_memory.c"
+    },
+    {
+      "sha256": "26889cfd6348c7b848fd372ba7f3a4dce87aeae1480bf343ac1d0f5059ea924f",
+      "path": "upstream/emu/xn/xn_subcore.c"
+    },
+    {
+      "sha256": "cefa3917dfb4943984b88b778eedebbb32e0f1bb5c303d696f6673fb7ec8a01b",
+      "path": "upstream/emu/xn/xn.h"
+    },
+    {
+      "sha256": "38c66741d97d848cbcec1a7f43d3ffe7a91bf57645a450c94a84d0953ed23c89",
+      "path": "upstream/emu/xp/xp_init.c"
+    },
+    {
+      "sha256": "b3a1245da74d3170f084580dba4d1525cd25bd6ac80bf1b416776d0ffbe72794",
+      "path": "upstream/emu/xp/xp_io.c"
+    },
+    {
+      "sha256": "369a44c9bedefc6f49aff8811ea968436dfc22d6922fc55d506003fdf9793406",
+      "path": "upstream/emu/xp/xp_memory.c"
+    },
+    {
+      "sha256": "17341427afecb9a35cdd9def7dd90478f44c9d7a67485b4bc3957a59c12e78ab",
+      "path": "upstream/emu/xp/xp_subcore.c"
+    },
+    {
+      "sha256": "97ba9e07a316b3b4945ed35a410e6de6ac5defc22d54246aee837f7fbf71aba2",
+      "path": "upstream/emu/xp/xp.h"
+    },
+    {
+      "sha256": "856aa5f0e16c74a66ad98c9688d4d99e57bb7fe9cf80fe99720d8215ce2d65d0",
+      "path": "upstream/emu/xs/xs_init.c"
+    },
+    {
+      "sha256": "67082be3daca53bc026cd02a846cb4d1385b837b058b35f0d12b6f43a2a2cc0f",
+      "path": "upstream/emu/xs/xs_io.c"
+    },
+    {
+      "sha256": "ea43eba1f9799bcb15f841d720f6b4ff56c18ef8e8f52f56f1a2ecdd7d316a30",
+      "path": "upstream/emu/xs/xs_memory.c"
+    },
+    {
+      "sha256": "7c7d721a6419969c61f5496f2befb3afd73439846973d61c989d061a7e1a5402",
+      "path": "upstream/emu/xs/xs_subcore.c"
+    },
+    {
+      "sha256": "6d5869f38362d27835d34ebc6bed72fbd7cbf95d880a75a220255c151a2110dc",
+      "path": "upstream/emu/xs/xs.h"
+    },
+    {
+      "sha256": "4d53c6d8dc2d0adbaad84da9edde5a0142b09189f3dad7b3c592f6a803684c8a",
+      "path": "upstream/emu/xz/xz_init.c"
+    },
+    {
+      "sha256": "d5283a4f888440d1fd38388ff027c18c7cab5f4813d3cbe16844e8002c4451ae",
+      "path": "upstream/emu/xz/xz_io.c"
+    },
+    {
+      "sha256": "41b0cd9ff6a9854725f9d79d061a7337ca3f4804a4cd7f87ee16f131935961fe",
+      "path": "upstream/emu/xz/xz_memory.c"
+    },
+    {
+      "sha256": "37d4f5f48362147b19df7c3ccf2d6dbda937b70497ad97eef5b8ca7408d802f8",
+      "path": "upstream/emu/xz/xz_subcore.c"
+    },
+    {
+      "sha256": "be242c99f8acde99a3ed0b04ea746eb48682d1b442c8dd5837a38bc47c0af61a",
+      "path": "upstream/emu/xz/xz.h"
+    },
+    {
+      "sha256": "930ee22738762ff23ec399363eb3c092bdbe6c590ad6cf721d9ea56bd2e71c9f",
+      "path": "upstream/emu/z80.c"
+    },
+    {
+      "sha256": "d34570bf7a4544b679cdf26800f59b81035fd6ca32358fd60851000492d46ec7",
+      "path": "upstream/emu/z80.h"
+    },
+    {
+      "sha256": "451b8b0127e770852125b459338279c2cec990f00f741055424bbad0c288eed9",
+      "path": "upstream/emu/z80cb.h"
+    },
+    {
+      "sha256": "09a142f444d98670b665732b3d93aba97e4a61ba2a52d6fa3264ce86b4baced9",
+      "path": "upstream/emu/z80cmds.h"
+    },
+    {
+      "sha256": "34457e8d61228b97e5d5b9e107e2a1065e0d15aa55e0b238a40ffc613716b043",
+      "path": "upstream/emu/z80ddfd.h"
+    },
+    {
+      "sha256": "e8b9c214c5dcb455b67d7bf22d589180a0665a4bf2d882b3daee322fe2b10c20",
+      "path": "upstream/emu/z80ed.h"
+    },
+    {
+      "sha256": "517bb4d383d66a5f6f6fb8bb92a22482715175a51208dd95f590e797896f6e01",
+      "path": "upstream/emu/z80main.h"
+    }
+  ],
+  "license": "LGPL-2.1-or-later (emu sources); GPL-3.0-or-later (application)",
+  "sha256": "4e752f63477640d72fd8b48ca5acd7a7590f3b29005d603cd59a687a2fce8576",
+  "patches": [],
+  "upstream": "TilEm 2.0",
+  "archive": "https://deb.debian.org/debian/pool/main/t/tilem/tilem_2.0.orig.tar.bz2"
+}

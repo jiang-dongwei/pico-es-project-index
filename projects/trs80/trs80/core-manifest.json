@@ -1,0 +1,30 @@
+{
+  "name": "trs80",
+  "displayName": "TRS-80 Model I / III / 4",
+  "romDirectory": "/roms/TRS80",
+  "saveDirectory": "/SAVES/TRS80",
+  "frontendContractVersion": 2,
+  "license": "GPL-3.0-or-later",
+  "status": "hw16-readonly-candidate-pending-hardware",
+  "upstream": "https://github.com/TimothyPMann/xtrs",
+  "upstreamRevision": "3a2180c063811a715faa28d39a94739c33e0abd0",
+  "models": [
+    1,
+    3,
+    4
+  ],
+  "implementedMedia": [
+    "raw-bios",
+    "plain-cmd",
+    "read-only-JV1",
+    "read-only-single-block-JV3"
+  ],
+  "pendingMedia": [
+    "two-block-JV3",
+    "DMK",
+    "CAS",
+    "disk-write"
+  ],
+  "hardwareVerified": false,
+  "version": "trs80-readonly1"
+}

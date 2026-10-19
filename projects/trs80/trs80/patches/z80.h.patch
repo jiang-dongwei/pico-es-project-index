@@ -1,0 +1,31 @@
+diff --git a/z80.h b/z80.h
+index c4e42da..4bb03b0 100644
+--- a/z80.h
++++ b/z80.h
+@@ -43,7 +43,7 @@
+ #include "config.h"
+ #include <stdio.h>
+ #include <ctype.h>
+-#include <sys/time.h>
++#include <stdint.h>
+ 
+ #ifndef TRUE
+ #define TRUE	(1)
+@@ -54,15 +54,8 @@ typedef unsigned int Uint;      /* 4 bytes */
+ typedef unsigned short Ushort;  /* 2 bytes */
+ typedef unsigned char Uchar;    /* 1 byte */
+ 
+-#if __WORDSIZE == 32
+-typedef unsigned long long tstate_t;
+-#define TSTATE_T_MID (((unsigned long long) -1LL)/2ULL)
+-#define TSTATE_T_LEN "llu"
+-#else
+-typedef unsigned long tstate_t;
+-#define TSTATE_T_MID (((unsigned long) -1L)/2UL)
+-#define TSTATE_T_LEN "lu"
+-#endif
++typedef uint64_t tstate_t;
++#define TSTATE_T_MID (UINT64_MAX / 2u)
+ 
+ struct twobyte
+ {

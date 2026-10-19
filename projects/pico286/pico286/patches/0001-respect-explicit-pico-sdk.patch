@@ -1,0 +1,27 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index dfba772..95fbf7a 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -13,6 +13,8 @@ endif()
+ set(picotoolVersion 2.2.0)
+ set(picoVscode ${USERHOME}/.pico-sdk/cmake/pico-vscode.cmake)
+-if (EXISTS ${picoVscode})
++if (EXISTS ${picoVscode} AND
++    NOT DEFINED PICO_SDK_PATH AND
++    NOT DEFINED ENV{PICO_SDK_PATH})
+     include(${picoVscode})
+ endif()
+ # ====================================================================================
+@@ -24,7 +26,11 @@ set(CMAKE_CXX_STANDARD 20)
+ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+ 
+ # Pull in Raspberry Pi Pico SDK (must be before project, but after PICO_BOARD)
+-include($ENV{PICO_SDK_PATH}/external/pico_sdk_import.cmake)
++if (DEFINED PICO_SDK_PATH)
++    include(${PICO_SDK_PATH}/external/pico_sdk_import.cmake)
++else()
++    include($ENV{PICO_SDK_PATH}/external/pico_sdk_import.cmake)
++endif()
+ 
+ project(286 C CXX ASM)
+ SET(BUILD_NAME "${PROJECT_NAME}")

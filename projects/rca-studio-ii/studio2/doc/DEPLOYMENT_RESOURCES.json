@@ -1,0 +1,89 @@
+{
+  "deployed_at": "2026-10-06T16:44:49.2317486+08:00",
+  "volume_id": "\\\\?\\Volume{b7c2e142-bc25-11f1-9852-50c2e8f4a156}\\",
+  "repository": "https://github.com/ajavamind/rca-studio2",
+  "revision": "7285fcead99fbfb718457dd4681c2453da44ce7e",
+  "license_note": "Upstream LICENSE explicitly excludes Studio 2 ROM and game images. Local test data only; no ROM bytes committed or redistributed.",
+  "bios_validation": "Published emulator variant, SHA1 42583238922844909159FCB8F66A0A580B9B1A77. Differs from MAME chip dumps at 003E: 38 (SKP) instead of 34 (B1). Remaining three chips match MAME. Unmodified BIOS converted from Emma 02 Intel HEX matches all four MAME chip hashes but produces blank video in current core; unresolved compatibility limitation. Deployed author variant passes host smoke checks.",
+  "host_probe": "10 cartridges, each two identical instances for 600 frames; deterministic state, nonzero video/audio. Smoke test only; no gameplay/hardware acceptance.",
+  "files": [
+    {
+      "name": "BASEBALL.BIN",
+      "bytes": 1024,
+      "sha256": "91F34DFB53636939ADA3B6B5D73E1C1A4EF988AF139B75CE171F843213E3FA25",
+      "destination": "H:\\roms\\STUDIO2\\Games\\BASEBALL.BIN",
+      "source": "https://raw.githubusercontent.com/ajavamind/rca-studio2/7285fcead99fbfb718457dd4681c2453da44ce7e/Studio2/data/BASEBALL.BIN"
+    },
+    {
+      "name": "BLACKJACK.BIN",
+      "bytes": 1024,
+      "sha256": "B44CD6FCFEFF942E3AAECB42CE25A1201A16463DE1F5180971B71F6DD3042F35",
+      "destination": "H:\\roms\\STUDIO2\\Games\\BLACKJACK.BIN",
+      "source": "https://raw.githubusercontent.com/ajavamind/rca-studio2/7285fcead99fbfb718457dd4681c2453da44ce7e/Studio2/data/BLACKJACK.BIN"
+    },
+    {
+      "name": "combat.st2",
+      "bytes": 1280,
+      "sha256": "4DEBD82775C27223A5C87EE17EC6DD916C9C79846FA730E625FD3F079A691033",
+      "destination": "H:\\roms\\STUDIO2\\Games\\combat.st2",
+      "source": "https://raw.githubusercontent.com/ajavamind/rca-studio2/7285fcead99fbfb718457dd4681c2453da44ce7e/Studio2/data/combat.st2"
+    },
+    {
+      "name": "gunfighter-moonship.bin",
+      "bytes": 1024,
+      "sha256": "6B3C6FCABD00E881F10450AE882E0FCF3D9E7C168146A6552D2E3846F631D7E2",
+      "destination": "H:\\roms\\STUDIO2\\Games\\gunfighter-moonship.bin",
+      "source": "https://raw.githubusercontent.com/ajavamind/rca-studio2/7285fcead99fbfb718457dd4681c2453da44ce7e/Studio2/data/gunfighter-moonship.bin"
+    },
+    {
+      "name": "hockey.st2",
+      "bytes": 1280,
+      "sha256": "87BE8A5DD4F799E902FA9E9ED400BCEC26CCE931E238CDB9F88EC2FCD31E0BA4",
+      "destination": "H:\\roms\\STUDIO2\\Games\\hockey.st2",
+      "source": "https://raw.githubusercontent.com/ajavamind/rca-studio2/7285fcead99fbfb718457dd4681c2453da44ce7e/Studio2/data/hockey.st2"
+    },
+    {
+      "name": "invaders.st2",
+      "bytes": 1280,
+      "sha256": "85E50BF83EC5E6B91EF7E55636745A5608481CD16B60C5B3B63ADFE1DCFEEC95",
+      "destination": "H:\\roms\\STUDIO2\\Games\\invaders.st2",
+      "source": "https://raw.githubusercontent.com/ajavamind/rca-studio2/7285fcead99fbfb718457dd4681c2453da44ce7e/Studio2/data/invaders.st2"
+    },
+    {
+      "name": "kaboom.st2",
+      "bytes": 1280,
+      "sha256": "46A9B27CD6C31E7DE8437F2DC2EF2E90DB781E3805FDDB7C6392E5EE7541BEA9",
+      "destination": "H:\\roms\\STUDIO2\\Games\\kaboom.st2",
+      "source": "https://raw.githubusercontent.com/ajavamind/rca-studio2/7285fcead99fbfb718457dd4681c2453da44ce7e/Studio2/data/kaboom.st2"
+    },
+    {
+      "name": "SPACEWAR.BIN",
+      "bytes": 512,
+      "sha256": "134404A92678A37B206A79ED642F5DC42FD5E585C1B7F02F3A013BF0A5DE178F",
+      "destination": "H:\\roms\\STUDIO2\\Games\\SPACEWAR.BIN",
+      "source": "https://raw.githubusercontent.com/ajavamind/rca-studio2/7285fcead99fbfb718457dd4681c2453da44ce7e/Studio2/data/SPACEWAR.BIN"
+    },
+    {
+      "name": "SPEEDWAY.BIN",
+      "bytes": 512,
+      "sha256": "4D5B8FB8BCF2212EE574842D5A0972560A94C3C39630F73A486453FBBF401DF0",
+      "destination": "H:\\roms\\STUDIO2\\Games\\SPEEDWAY.BIN",
+      "source": "https://raw.githubusercontent.com/ajavamind/rca-studio2/7285fcead99fbfb718457dd4681c2453da44ce7e/Studio2/data/SPEEDWAY.BIN"
+    },
+    {
+      "name": "studio2.rom",
+      "bytes": 2048,
+      "sha256": "19AC90F5CD938591520279F3509780D923663C48D197BC305AA3949A5082C34B",
+      "destination": "H:\\bios\\studio2.rom",
+      "source": "https://raw.githubusercontent.com/ajavamind/rca-studio2/7285fcead99fbfb718457dd4681c2453da44ce7e/Studio2/data/studio2.rom"
+    },
+    {
+      "name": "TENNIS.BIN",
+      "bytes": 512,
+      "sha256": "819B920A35E46E94184563AB3EA0A3DAAFAC72C92C60F70783F615D68D1B07DD",
+      "destination": "H:\\roms\\STUDIO2\\Games\\TENNIS.BIN",
+      "source": "https://raw.githubusercontent.com/ajavamind/rca-studio2/7285fcead99fbfb718457dd4681c2453da44ce7e/Studio2/data/TENNIS.BIN"
+    }
+  ],
+  "follow_up_validation": "2026-10-06 Tennis-specific complete A1/B4/A7 sequence passes with both author and unmodified MAME-matching BIOS. Previous generic A1/A5 probe was incomplete; its blank-video result is insufficient evidence of original BIOS incompatibility. See HANDOFF.md correction and tests/probe_tennis.c. Existing SD files were not replaced."
+}

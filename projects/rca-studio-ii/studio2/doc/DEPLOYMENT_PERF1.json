@@ -1,0 +1,88 @@
+{
+  "deployed_date": "2026-10-07",
+  "version": "studio2-perf1",
+  "volume_id": "\\\\?\\Volume{b7c2e142-bc25-11f1-9852-50c2e8f4a156}\\",
+  "firmware": "H:\\emu\\16\\studio2.uf2",
+  "sha256": "A025A428E063AE5B94042A4E6D4CE09EE5A0627403EEF431C9F9B175611D41FB",
+  "backup": "E:\\ComporyProject\\pico_ES_Public_Projects\\Pico_ES_RCAStudioII\\studio2\\build-deploy-backup-perf1-20261007-093644",
+  "preserved_files": 15,
+  "readback": "PASS",
+  "hardware_acceptance": "Rendering performance pending hardware retest",
+  "protected_hashes": [
+    {
+      "Algorithm": "SHA256",
+      "Hash": "8C9468B421ABDD2D786AA4DBED720318A18DAAF73C7E5611F8A02E5CC63F4BC9",
+      "Path": "H:\\emu\\emulators.txt"
+    },
+    {
+      "Algorithm": "SHA256",
+      "Hash": "8FAE59D9FF3CCED68CD041E6FBE9E30F748685B16D97D39A84B7DB026C0CA320",
+      "Path": "H:\\emu\\assets\\themes\\0\\studio2.png"
+    },
+    {
+      "Algorithm": "SHA256",
+      "Hash": "19AC90F5CD938591520279F3509780D923663C48D197BC305AA3949A5082C34B",
+      "Path": "H:\\bios\\studio2.rom"
+    },
+    {
+      "Algorithm": "SHA256",
+      "Hash": "A91B120B7D345F3BCF4D1F1012A555FAA1D78D7D5164605E1396830E21E5DD8A",
+      "Path": "H:\\roms\\STUDIO2\\PicoES_Studio2_Input.s2d"
+    },
+    {
+      "Algorithm": "SHA256",
+      "Hash": "0AED804249E5204424A117E7A0714694A8BEFD6C16DB1B5B337FA12603DF2CA6",
+      "Path": "H:\\roms\\STUDIO2\\PicoES_Studio2_Tone.s2d"
+    },
+    {
+      "Algorithm": "SHA256",
+      "Hash": "91F34DFB53636939ADA3B6B5D73E1C1A4EF988AF139B75CE171F843213E3FA25",
+      "Path": "H:\\roms\\STUDIO2\\Games\\BASEBALL.BIN"
+    },
+    {
+      "Algorithm": "SHA256",
+      "Hash": "B44CD6FCFEFF942E3AAECB42CE25A1201A16463DE1F5180971B71F6DD3042F35",
+      "Path": "H:\\roms\\STUDIO2\\Games\\BLACKJACK.BIN"
+    },
+    {
+      "Algorithm": "SHA256",
+      "Hash": "4DEBD82775C27223A5C87EE17EC6DD916C9C79846FA730E625FD3F079A691033",
+      "Path": "H:\\roms\\STUDIO2\\Games\\combat.st2"
+    },
+    {
+      "Algorithm": "SHA256",
+      "Hash": "6B3C6FCABD00E881F10450AE882E0FCF3D9E7C168146A6552D2E3846F631D7E2",
+      "Path": "H:\\roms\\STUDIO2\\Games\\gunfighter-moonship.bin"
+    },
+    {
+      "Algorithm": "SHA256",
+      "Hash": "87BE8A5DD4F799E902FA9E9ED400BCEC26CCE931E238CDB9F88EC2FCD31E0BA4",
+      "Path": "H:\\roms\\STUDIO2\\Games\\hockey.st2"
+    },
+    {
+      "Algorithm": "SHA256",
+      "Hash": "85E50BF83EC5E6B91EF7E55636745A5608481CD16B60C5B3B63ADFE1DCFEEC95",
+      "Path": "H:\\roms\\STUDIO2\\Games\\invaders.st2"
+    },
+    {
+      "Algorithm": "SHA256",
+      "Hash": "46A9B27CD6C31E7DE8437F2DC2EF2E90DB781E3805FDDB7C6392E5EE7541BEA9",
+      "Path": "H:\\roms\\STUDIO2\\Games\\kaboom.st2"
+    },
+    {
+      "Algorithm": "SHA256",
+      "Hash": "134404A92678A37B206A79ED642F5DC42FD5E585C1B7F02F3A013BF0A5DE178F",
+      "Path": "H:\\roms\\STUDIO2\\Games\\SPACEWAR.BIN"
+    },
+    {
+      "Algorithm": "SHA256",
+      "Hash": "4D5B8FB8BCF2212EE574842D5A0972560A94C3C39630F73A486453FBBF401DF0",
+      "Path": "H:\\roms\\STUDIO2\\Games\\SPEEDWAY.BIN"
+    },
+    {
+      "Algorithm": "SHA256",
+      "Hash": "819B920A35E46E94184563AB3EA0A3DAAFAC72C92C60F70783F615D68D1B07DD",
+      "Path": "H:\\roms\\STUDIO2\\Games\\TENNIS.BIN"
+    }
+  ]
+}

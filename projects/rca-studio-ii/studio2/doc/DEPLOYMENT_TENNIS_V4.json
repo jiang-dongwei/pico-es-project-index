@@ -1,0 +1,11 @@
+{
+  "deployed_date": "2026-10-07",
+  "version": "Tennis auto launch v4",
+  "volume_id": "\\\\?\\Volume{b7c2e142-bc25-11f1-9852-50c2e8f4a156}\\",
+  "firmware": "H:\\emu\\16\\studio2.uf2",
+  "sha256": "09D02903DEBAD34123DCC6793B3681736C7785BA00E10A04CC324E5AACDD5A67",
+  "backup": "E:\\ComporyProject\\pico_ES_Public_Projects\\Pico_ES_RCAStudioII\\studio2\\build-deploy-backup-tennis-v4-20261007-090437",
+  "preserved_files": 13,
+  "readback": "PASS",
+  "hardware_acceptance": "v3 ball motion and paddle control user-confirmed; v4 automatic ROM launch pending"
+}

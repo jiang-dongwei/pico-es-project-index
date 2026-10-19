@@ -1,0 +1,102 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -45,6 +45,9 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${OUTPUT_DIR}")
+ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${OUTPUT_DIR}")
+ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${OUTPUT_DIR}")
+ 
++set(RETROPICOES_PORT_DIR "" CACHE PATH
++    "Path to the Pico_ES pico286/platform/retropicoes directory")
++
+ # =========================
+ # SOURCE FILES
+ # =========================
+@@ -170,6 +172,12 @@ else ()
+         message(FATAL_ERROR "Only one audio option can be enabled at a time")
+     endif ()
+ 
++    if (RETROPICOES_HW16 AND
++        NOT EXISTS "${RETROPICOES_PORT_DIR}/core_events.c")
++        message(FATAL_ERROR
++            "RETROPICOES_HW16 requires RETROPICOES_PORT_DIR with core_events.c")
++    endif ()
++
+     # =========================
+     # BUILD NAME GENERATION
+     # =========================
+@@ -372,6 +380,14 @@ else ()
+         )
+     endif ()
++    if (RETROPICOES_HW16)
++        target_sources(${PROJECT_NAME} PRIVATE
++                "${RETROPICOES_PORT_DIR}/core_events.c"
++        )
++        target_include_directories(${PROJECT_NAME} PRIVATE
++                "${RETROPICOES_PORT_DIR}"
++        )
++    endif ()
+     pico_add_extra_outputs(${PROJECT_NAME})
+ 
+     if (m1p2launcher)
+         add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+diff --git a/src/pico-main.c b/src/pico-main.c
+--- a/src/pico-main.c
++++ b/src/pico-main.c
+@@ -29,6 +29,10 @@
+ #include "emu8950.h"
+ #include "ps2_mouse.h"
+ 
++#if RETROPICOES_HW16
++#include "core_events.h"
++#endif
++
+ #if HARDWARE_SOUND
+ #include "74hc595/74hc595.h"
+ #endif
+@@ -44,6 +48,10 @@ FATFS fs;
+ struct semaphore vga_start_semaphore;
+ int cursor_blink_state = 0;
+ 
++#if RETROPICOES_HW16
++static pico286_core_events_t core_events;
++#endif
++
+ #if I2S_SOUND
+ i2s_config_t i2s_config;
+ #elif PWM_SOUND || HARDWARE_SOUND
+@@ -281,7 +289,11 @@ void __time_critical_func() second_core(void) {
+     while (true) {
+         // Timer interrupt handling
+         if (tick >= last_timer_tick + timer_period) {
++#if RETROPICOES_HW16
++            pico286_core_events_publish_pit(&core_events, 1u);
++#else
+             doirq(0);
++#endif
+             last_timer_tick = tick;
+         }
+ 
+@@ -666,6 +678,9 @@ static void load_config_286() {
+ }
+ 
+ int main(void) {
++#if RETROPICOES_HW16
++    pico286_core_events_init(&core_events);
++#endif
+     // Platform-specific initialization
+ #if PICO_RP2350
+     vreg_disable_voltage_limit();
+@@ -816,6 +831,13 @@ int main(void) {
+     // Main emulation loop
+     while (true) {
+         exec86(tormoz);
++#if RETROPICOES_HW16
++        uint32_t pending_pit = pico286_core_events_consume_pit(
++            &core_events, PICO286_MAX_PIT_CATCHUP);
++        while (pending_pit-- != 0u) {
++            doirq(0);
++        }
++#endif
+ #if !PICO_RP2040
+         if (delay) sleep_us(delay);
+ #endif

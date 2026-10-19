@@ -1,0 +1,123 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -29,9 +35,9 @@ SET(BUILD_NAME "${PROJECT_NAME}")
+ #set(MURM20 ON)
+ #set(m1p2launcher ON)
+ # CPU Configuration
+-set(CPU_FREQ_MHZ "500")
+-set(FLASH_FREQ_MHZ "100")
+-set(PSRAM_FREQ_MHZ "166")
++set(CPU_FREQ_MHZ "500" CACHE STRING "System clock frequency in MHz")
++set(FLASH_FREQ_MHZ "100" CACHE STRING "Flash clock frequency in MHz")
++set(PSRAM_FREQ_MHZ "166" CACHE STRING "PSRAM clock frequency in MHz")
+ 
+ # =========================
+ # OUTPUT DIRECTORIES
+@@ -91,6 +91,7 @@ else ()
+     option(ENABLE_I2S_SOUND "Enable I2S audio output" OFF)
+     option(ENABLE_PWM_SOUND "Enable PWM audio output" OFF)
+     option(ENABLE_HARDWARE_SOUND "Enable hardware audio output" OFF)
++    option(RETROPICOES_HW16 "Use the Retro_PicoES V2.1 HW_CONFIG=16 board profile" OFF)
+ 
+     # =========================
+     # VALIDATION
+@@ -137,6 +138,14 @@ else ()
+         message(FATAL_ERROR "Only one display option can be enabled at a time")
+     endif ()
+ 
++    if (RETROPICOES_HW16)
++        if (NOT PICO_RP2350)
++            message(FATAL_ERROR "RETROPICOES_HW16 requires RP2350")
++        endif ()
++        set(CPU_FREQ_MHZ "252")
++        message(STATUS "Retro_PicoES HW16 enabled - CPU frequency locked to 252 MHz")
++    endif ()
++
+     # Validate audio options
+     set(AUDIO_COUNT 0)
+     if (ENABLE_I2S_SOUND)
+@@ -150,6 +159,9 @@ else ()
+     if (ENABLE_HARDWARE_SOUND)
+         math(EXPR AUDIO_COUNT "${AUDIO_COUNT} + 1")
+     endif ()
++    if (RETROPICOES_HW16)
++        math(EXPR AUDIO_COUNT "${AUDIO_COUNT} + 1")
++    endif ()
+ 
+     if (AUDIO_COUNT EQUAL 0)
+         message(FATAL_ERROR "At least one audio option must be enabled")
+@@ -309,7 +321,18 @@ else ()
+ 
+             PSRAM
+     )
+-    if (MURM20)
++    if (RETROPICOES_HW16)
++        target_compile_definitions(${PROJECT_NAME} PRIVATE
++                RETROPICOES_HW16=1
++                RETROPICOES_AUDIO=1
++                PICO286_PSRAM_CS_PIN=47
++                PICO_DEFAULT_UART_TX_PIN=2 PICO_DEFAULT_UART_RX_PIN=3
++                SDCARD_SPI_BUS=spi1
++                SDCARD_PIN_SPI0_CS=43 SDCARD_PIN_SPI0_SCK=30
++                SDCARD_PIN_SPI0_MOSI=31 SDCARD_PIN_SPI0_MISO=40
++                USE_NESPAD NES_GPIO_CLK=6 NES_GPIO_DATA=8 NES_GPIO_LAT=7
++        )
++    elseif (MURM20)
+         target_compile_definitions(${PROJECT_NAME} PRIVATE
+                 MURM2=1
+                 # Pin configurations
+diff --git a/src/pico-main.c b/src/pico-main.c
+--- a/src/pico-main.c
++++ b/src/pico-main.c
+@@ -60,6 +60,10 @@ void sigbus(void);
+ void __attribute__((naked, noreturn)) __printflike(1, 0) dummy_panic(__unused const char *fmt, ...);
+ #if PICO_RP2350
+ void __no_inline_not_in_flash_func(psram_init)(uint cs_pin);
++
++#ifndef PICO286_PSRAM_CS_PIN
++#define PICO286_PSRAM_CS_PIN 47
++#endif
+ #endif
+ 
+ static const uint32_t NO_TORMOZ = 32768;
+@@ -726,7 +730,7 @@ int main(void) {
+ #ifdef MURM2
+     gp = rp2350a ?  8 : 47;
+ #else
+-    gp = rp2350a ? 19 : 47;
++    gp = rp2350a ? 19 : PICO286_PSRAM_CS_PIN;
+ #endif
+     psram_init(gp);
+     if (!butter_psram_size) {
+diff --git a/src/emulator/i8253.h b/src/emulator/i8253.h
+--- a/src/emulator/i8253.h
++++ b/src/emulator/i8253.h
+@@ -116,7 +116,7 @@ static inline void i8253_write(const uint16_t port_number, const uint8_t data) {
+             timer_period = (int)(PIT_FREQUENCY / divisor);
+ #endif
+         } else if (channel_index == 2) {
+-#if I2S_SOUND || HARDWARE_SOUND || !PICO_ON_DEVICE
++#if I2S_SOUND || HARDWARE_SOUND || RETROPICOES_AUDIO || !PICO_ON_DEVICE
+             speakerenabled = (port61 & 3) == 3;
+ #else
+             pwm_config config = pwm_get_default_config();
+diff --git a/src/emulator/ports.c b/src/emulator/ports.c
+--- a/src/emulator/ports.c
++++ b/src/emulator/ports.c
+@@ -134,13 +134,13 @@ void portout(uint16_t portnum, uint16_t value) {
+         case 0x61: // PC Speaker
+             port61 = value;
+             if ((value & 3) == 3) {
+-#if I2S_SOUND || HARDWARE_SOUND || !PICO_ON_DEVICE
++#if I2S_SOUND || HARDWARE_SOUND || RETROPICOES_AUDIO || !PICO_ON_DEVICE
+                 speakerenabled = 1;
+ #else
+                 pwm_set_gpio_level(PWM_BEEPER, 127);
+ #endif
+             } else {
+-#if I2S_SOUND || HARDWARE_SOUND || !PICO_ON_DEVICE
++#if I2S_SOUND || HARDWARE_SOUND || RETROPICOES_AUDIO || !PICO_ON_DEVICE
+                 speakerenabled = 0;
+ #else
+                 pwm_set_gpio_level(PWM_BEEPER, 0);

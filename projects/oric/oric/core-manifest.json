@@ -1,0 +1,9 @@
+{
+  "name": "oric",
+  "displayName": "Oric-1 / Atmos",
+  "romDirectory": "/roms/ORIC",
+  "saveDirectory": "/SAVES/ORIC",
+  "frontendContractVersion": 2,
+  "license": "GPL-3.0-or-later with zlib chips components",
+  "status": "development-not-hardware-accepted"
+}

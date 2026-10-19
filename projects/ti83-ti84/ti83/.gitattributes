@@ -1,0 +1,2 @@
+# Preserve upstream archive bytes and its existing whitespace for hash checks.
+upstream/** -text whitespace=-blank-at-eol,-blank-at-eof,-space-before-tab

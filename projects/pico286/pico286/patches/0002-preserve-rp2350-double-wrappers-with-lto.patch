@@ -1,0 +1,18 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -239,6 +239,14 @@ else ()
+     set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME "${BUILD_NAME}")
+     target_link_options(${PROJECT_NAME} PRIVATE -Xlinker --print-memory-usage --data-sections --function-sections)
+ 
++    # GCC LTO can internalize the C implementations from pico_double before
++    # the linker applies --wrap. Keep the wrapper entry points used by the FPU.
++    if (PICO_RP2350 AND NOT PICO_RISCV)
++        foreach (DOUBLE_WRAPPER trunc ceil floor ldexp fmod exp2 remainder round remquo)
++            target_link_options(${PROJECT_NAME} PRIVATE "-Wl,-u,__wrap_${DOUBLE_WRAPPER}")
++        endforeach ()
++    endif ()
++
+     pico_set_program_name(286 "PC 8086/8088/186/286 emulator")
+     pico_set_program_version(${PROJECT_NAME} "1.1.0")
+     pico_set_boot_stage2(${PROJECT_NAME} slower_boot2)

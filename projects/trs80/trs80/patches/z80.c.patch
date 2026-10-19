@@ -1,0 +1,23 @@
+diff --git a/z80.c b/z80.c
+index eb578b3..fcc8e94 100644
+--- a/z80.c
++++ b/z80.c
+@@ -61,8 +61,8 @@
+ #include "z80.h"
+ #include "trs.h"
+ #include "trs_imp_exp.h"
+-#include <stdlib.h>  /* for rand() */
+-#include <time.h>    /* for time() */
++
++
+ 
+ /*
+  * Keep Saber quiet.
+@@ -4441,6 +4441,6 @@ void z80_reset(void)
+     z80_state.irq = z80_state.nmi = FALSE;
+     z80_state.sched = 0;
+ 
+-    srand(time(NULL));  /* Seed the RNG, for reading the refresh register */
++
+ }
+ 

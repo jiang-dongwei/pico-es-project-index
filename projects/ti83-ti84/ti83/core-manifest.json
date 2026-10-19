@@ -1,0 +1,15 @@
+{
+  "core": "ti83",
+  "displayName": "TI-83/84",
+  "system": "TI83",
+  "frontendContractVersion": 2,
+  "hardware": {"board": "pico2b", "hwConfig": 16},
+  "models": ["TI-83", "TI-83 Plus", "TI-84 Plus"],
+  "romRoot": "/roms/TI83",
+  "gameExtensions": [".8xp"],
+  "defaultSystemPath": "/roms/TI83/ti84plus.84prom",
+  "candidateVersion": "ti83-perf21-hotmain",
+  "settingsPath": "/settings_TI83.dat",
+  "upstream": {"name": "libtilemcore", "version": "2.0", "license": "LGPL-2.1-or-later"},
+  "status": "candidate-host-game-auto-launch-verified-awaiting-hardware"
+}

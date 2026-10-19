@@ -1,0 +1,4 @@
+# Preserve pinned upstream formatting and literal patch context.
+third_party/xtrs/* text eol=lf -whitespace
+patches/*.patch text eol=lf -whitespace
+scripts/*.ps1 text eol=lf

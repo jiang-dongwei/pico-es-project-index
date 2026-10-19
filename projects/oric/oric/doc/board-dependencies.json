@@ -1,0 +1,18 @@
+{
+  "pico-sdk-2.3.0": {
+    "commit": "98a542c1a62fb549ffb5d66a3e5892b06276b670",
+    "files": {}
+  },
+  "Pico-PIO-USB": {
+    "commit": "fe9133fc513b82cc3dc62c67cb51f2339cf29ef7",
+    "files": {
+      "src/pio_usb.c": "64a6dea02a5c67fbde55eb16e7985d38833ceea4e5078804cb866c90f803d636"
+    }
+  },
+  "tusb_xinput": {
+    "commit": "915b21ac3d86d279d4e2b52384f1910ac633a607",
+    "files": {
+      "xinput_host.c": "ecdb37c7fc323837779e6ced467adb2e909f4eb137956861cefcb8449b64ee0c"
+    }
+  }
+}
