@@ -6,7 +6,7 @@
 
 Original size: 17,097,703,276 bytes. SHA-256: `8f9721007729bb4a7e9bab5db870d559534de684b48082fc126104351e18bc10`.
 
-The backup uses 32 binary parts plus `SHA256SUMS.txt` and `Merge-Archive.ps1`. Upload is in progress until all 34 assets appear and the release notes confirm verification. Download all parts and use the included script to verify and reconstruct the original ZIP.
+The backup uses 32 binary parts plus `SHA256SUMS.txt` and `Merge-Archive.ps1`. Upload is complete: all 32 parts and the checksum manifest were verified against GitHub asset SHA-256 digests. Download all parts and use the included script to verify and reconstruct the original ZIP.
 
 Repository directory updated 2026-10-19. Includes accepted ports, experimental candidates, incomplete ports, and unsuccessful development attempts. A repository link is not a hardware acceptance claim.
 
